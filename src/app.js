@@ -14,7 +14,7 @@ let graspActivities = ["carrying a shopping bag"];
 
 let keyPinchActivities = ["using a key"];
 
-let tripodPinchActivities = ["writing", "manipulating utensils"];
+let tripodPinchActivities = ["writing", "manipulating utensils", "opening a jar"];
 
 let thumbAbAdActivities = ["using a smart phone"];
 /*
@@ -30,15 +30,23 @@ function randGen(array){
 
 
 //variable to store pain info
-const painInput = "with less than x/10 pain (VAS)";
+let painInput = "with less than x/10 pain (VAS)";
 
-//exercise card factory function
+
+//Goal card factory function
 function createGoal(title, goal, category){
     return{
         title,
         goal,
         category,
         card: createElement("div", "card"),
+        headerContain: createElement("div", "header-contain"),
+        title: createElement("h2", "title", title),
+        btnContain: createElement("div", "btn-contain"),
+        painBtn: createElement("button", "pain-btn", "Pain (+/-)"),
+        copyBtn: createElement("button", "copy-btn", "Copy"),
+        goalContain: createElement("div", "goal-contain"),
+        goal: createElement("p", "goal", goal),
     }
 };
 
@@ -58,7 +66,6 @@ export function createElement(el, cls, inText){
 function add(name){
     goalArray.push(name);
 };
-
 
 // <---------------library of Goals------------------->
 
@@ -93,3 +100,6 @@ let DPC = createGoal("Distal Palmar Crease (DPC)", `Patient will decrease distan
 add(DPC);
 
 //Strength
+
+let shFlex = createGoal("Shoulder Flexion", `Patient will be able to perform AROM shoulder flexion against gravity to **degrees** to assist the activity of opening cabinets.`, "Strength");
+add(shFlex);

@@ -74,6 +74,10 @@ select {
   }
 }
 
+.hide{
+  display: none;
+}
+
 /* <---------------header------------------>*/
 
 header{
@@ -105,14 +109,15 @@ header{
 .goal-section{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    margin: 1rem 1rem; 
+    margin: 0.5rem 1rem; 
+    gap: 0.25rem;
 }
 
 .card{
     border: 1px black solid;
-    min-height: 8rem;
+    min-height: 7rem;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .header-contain{

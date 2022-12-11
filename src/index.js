@@ -15,48 +15,54 @@ function createHeader(){
         let tab = createElement("a", "tab", `${tabAr[i]}`);
         nav.appendChild(tabLi);
         tabLi.appendChild(tab);
-    }
 
+        tab.addEventListener("click", function(){
+            if(tab.innerText == "ROM") {
+                displayGoalCards(goalArray, "ROM"); 
+            }
+            else if(tab.innerText == "Strength") {
+                displayGoalCards(goalArray, "Strength");
+            }
+            else if(tab.innerText == "Scar/Edema"){
+                goalSection.innerHTML = "";
+            }
+        })
+    }
 }
 
-//function to create and render exercise cards
-function displayGoalCards(array){
+//Card container
+let goalSection = createElement("section", "goal-section");
 
-
+//function to render exercise cards
+export function displayGoalCards(array, cat){
+    goalSection.innerHTML = "";
         array.forEach(function(item){
-            //card item creation
-            let goalSection = createElement("section", "goal-section");
-            let headerContain = createElement("div", "header-contain");
-            let title = createElement("h2", "title", item.title);
-            let btnContain = createElement("div", "btn-contain");
-            let painBtn = createElement("button", "pain-btn", "Pain (+/-)");
-            let copyBtn = createElement("button", "copy-btn", "Copy");
-            let goalContain = createElement("div", "goal-contain");
-            let goal = createElement("p", "goal", item.goal);
-          
-
-            //appending items to card
+            if(item.category == cat){
             document.body.appendChild(goalSection);
             goalSection.appendChild(item.card);
-            item.card.appendChild(headerContain);
-            item.card.appendChild(goalContain);
-            headerContain.appendChild(title);
-            headerContain.appendChild(btnContain);
-            btnContain.appendChild(painBtn);
-            btnContain.appendChild(copyBtn);
-            goalContain.appendChild(goal);
-
-
-            
-            
+            item.card.appendChild(item.headerContain);
+            item.card.appendChild(item.goalContain);
+            item.headerContain.appendChild(item.title);
+            item.headerContain.appendChild(item.btnContain);
+            item.btnContain.appendChild(item.painBtn);
+            item.btnContain.appendChild(item.copyBtn);
+            item.goalContain.appendChild(item.goal);
+            }
         })
-
 }
 
+function copy (){
+    for (let i = 0; i < goalArray.length; i++){
+        let btn = goalArray[i].copyBtn;
+        btn.addEventListener("click", function(){
+            let input = goalArray[i].goal.innerText;
+            navigator.clipboard.writeText(input);
 
-
+        })
+    }
+    }
+copy();
 
 /* output */
 createHeader();
-displayGoalCards(goalArray);
 
