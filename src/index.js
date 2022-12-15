@@ -57,11 +57,29 @@ function copy (){
         btn.addEventListener("click", function(){
             let input = goalArray[i].goal.innerText;
             navigator.clipboard.writeText(input);
-
+            document.querySelectorAll(".card").forEach((item) =>{
+                item.classList.remove("selected");
+            })
+            goalArray[i].card.classList.add("selected");
         })
     }
     }
 copy();
+
+console.log(document.querySelectorAll(".card"))
+
+function hidePain(){
+    for (let i = 0; i < goalArray.length; i++){
+        let btn = goalArray[i].painBtn;
+        btn.addEventListener("click", function(){
+            document.querySelectorAll(".pain").forEach((item) =>{
+            item.classList.toggle("hide")
+        });
+
+        })
+    }
+}
+hidePain();
 
 /* output */
 createHeader();
