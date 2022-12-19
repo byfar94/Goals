@@ -9,7 +9,7 @@ function createHeader(){
     const nav = createElement("ul", "nav");
     header.appendChild(nav);
 
-    const tabAr = ["ROM", "Strength", "Scar/Edema"];
+    const tabAr = ["ROM", "Strength", "Scar/Edema/Pain", "Pre-Hab/Compliance"];
     for(let i=0; i < tabAr.length; i++){
         let tabLi = createElement("li");
         let tab = createElement("a", "tab", `${tabAr[i]}`);
@@ -23,8 +23,15 @@ function createHeader(){
             else if(tab.innerText == "Strength") {
                 displayGoalCards(goalArray, "Strength");
             }
-            else if(tab.innerText == "Scar/Edema"){
-                goalSection.innerHTML = "";
+            else if(tab.innerText == "Scar/Edema/Pain"){
+                displayGoalCards(goalArray, "Scar")
+                displayGoalCardsNoClear(goalArray, "Edema")
+                displayGoalCardsNoClear(goalArray, "Pain");
+
+            }
+            else if(tab.innerText == "Pre-Hab/Compliance"){
+                displayGoalCards(goalArray, "Prehab");
+                displayGoalCardsNoClear(goalArray, "Compliance");
             }
         })
     }
@@ -34,8 +41,25 @@ function createHeader(){
 let goalSection = createElement("section", "goal-section");
 
 //function to render exercise cards
-export function displayGoalCards(array, cat){
+function displayGoalCards(array, cat){
     goalSection.innerHTML = "";
+        array.forEach(function(item){
+            if(item.category == cat){
+            document.body.appendChild(goalSection);
+            goalSection.appendChild(item.card);
+            item.card.appendChild(item.headerContain);
+            item.card.appendChild(item.goalContain);
+            item.headerContain.appendChild(item.title);
+            item.headerContain.appendChild(item.btnContain);
+            item.btnContain.appendChild(item.painBtn);
+            item.btnContain.appendChild(item.copyBtn);
+            item.goalContain.appendChild(item.goal);
+            }
+        })
+}
+
+//function to render exercise cards without clearing innerHTMl
+function displayGoalCardsNoClear(array, cat){
         array.forEach(function(item){
             if(item.category == cat){
             document.body.appendChild(goalSection);
