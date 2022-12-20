@@ -51,6 +51,7 @@ function displayGoalCards(array, cat){
             item.card.appendChild(item.goalContain);
             item.headerContain.appendChild(item.title);
             item.headerContain.appendChild(item.btnContain);
+            item.btnContain.appendChild(item.lRBtn);
             item.btnContain.appendChild(item.painBtn);
             item.btnContain.appendChild(item.copyBtn);
             item.goalContain.appendChild(item.goal);
@@ -68,6 +69,7 @@ function displayGoalCardsNoClear(array, cat){
             item.card.appendChild(item.goalContain);
             item.headerContain.appendChild(item.title);
             item.headerContain.appendChild(item.btnContain);
+            item.btnContain.appendChild(item.lRBtn);
             item.btnContain.appendChild(item.painBtn);
             item.btnContain.appendChild(item.copyBtn);
             item.goalContain.appendChild(item.goal);
@@ -99,11 +101,52 @@ function hidePain(){
             document.querySelectorAll(".pain").forEach((item) =>{
             item.classList.toggle("hide")
         });
+        document.querySelectorAll(".card").forEach((item) =>{
+            item.classList.remove("selected");
+        })
 
         })
     }
 }
 hidePain();
+
+function leftVsRight(){
+    let num = 0;
+for (let i = 0; i < goalArray.length; i++){
+    let btn = goalArray[i].lRBtn;
+    btn.addEventListener("click", function(){
+        if(num == 0){
+            num = num + 1;
+            document.querySelectorAll(".lr-button").forEach((item) =>{
+                item.innerHTML = "Right";
+                document.querySelectorAll(".side").forEach((item) => {
+                    item.innerHTML = "right";
+                })
+                document.querySelectorAll(".card").forEach((item) =>{
+                    item.classList.remove("selected");
+                })
+        })
+        }
+        else if (num == 1){
+           num = num - 1;
+           document.querySelectorAll(".lr-button").forEach((item) =>{
+            item.innerHTML = "Left";
+            document.querySelectorAll(".side").forEach((item) => {
+                item.innerHTML = "left";
+            })
+            document.querySelectorAll(".card").forEach((item) =>{
+                item.classList.remove("selected");
+            })
+        })
+        }
+        
+        
+    });
+    }
+
+}
+
+leftVsRight();
 
 /* output */
 createHeader();
