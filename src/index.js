@@ -2,9 +2,11 @@ import _ from 'lodash';
 import './style.css';
 import { createElement, goalArray } from './app';
 
-
+//function to create header
 function createHeader(){
     const header = createElement("header");
+
+    //nav
     document.body.appendChild(header);
     const nav = createElement("ul", "nav");
     header.appendChild(nav);
@@ -35,7 +37,18 @@ function createHeader(){
             }
         })
     }
-}
+
+    //search
+    document.body.appendChild(header);
+    const searchContain = createElement("div", "search-contain");
+    header.appendChild(searchContain);
+    const search = createElement("input", "search");
+    search.type = "search";
+    search.id = "search"
+    search.placeholder = "Search Goals"
+    searchContain.appendChild(search)
+
+};
 
 //Card container
 let goalSection = createElement("section", "goal-section");
@@ -49,17 +62,21 @@ function displayGoalCards(array, cat){
             goalSection.appendChild(item.card);
             item.card.appendChild(item.headerContain);
             item.card.appendChild(item.goalContain);
-            item.headerContain.appendChild(item.title);
+            item.headerContain.appendChild(item.titleHead);
             item.headerContain.appendChild(item.btnContain);
-            item.btnContain.appendChild(item.lRBtn);
-            item.btnContain.appendChild(item.painBtn);
+            if (item.goal.innerHTML.includes("left" || "right")){
+                item.btnContain.appendChild(item.lRBtn);
+                }
+            if (item.goal.innerHTML.includes("x/10 pain")){
+                item.btnContain.appendChild(item.painBtn);
+                }
             item.btnContain.appendChild(item.copyBtn);
             item.goalContain.appendChild(item.goal);
             }
         })
 }
 
-//function to render exercise cards without clearing innerHTMl
+//function to render exercise cards without clearing innerHTMl first
 function displayGoalCardsNoClear(array, cat){
         array.forEach(function(item){
             if(item.category == cat){
@@ -67,16 +84,21 @@ function displayGoalCardsNoClear(array, cat){
             goalSection.appendChild(item.card);
             item.card.appendChild(item.headerContain);
             item.card.appendChild(item.goalContain);
-            item.headerContain.appendChild(item.title);
+            item.headerContain.appendChild(item.titleHead);
             item.headerContain.appendChild(item.btnContain);
-            item.btnContain.appendChild(item.lRBtn);
-            item.btnContain.appendChild(item.painBtn);
+            if (item.goal.innerHTML.includes("left" || "right")){
+                item.btnContain.appendChild(item.lRBtn);
+                }
+            if (item.goal.innerHTML.includes("x/10 pain")){
+                item.btnContain.appendChild(item.painBtn);
+                }
             item.btnContain.appendChild(item.copyBtn);
             item.goalContain.appendChild(item.goal);
             }
         })
 }
 
+//function to copy goal to clipboard (also adds class that will change backround color)
 function copy (){
     for (let i = 0; i < goalArray.length; i++){
         let btn = goalArray[i].copyBtn;
@@ -94,13 +116,19 @@ copy();
 
 console.log(document.querySelectorAll(".card"))
 
+//function to toggle pain information (will toggle pain info and pain button text decoration based on css class)
 function hidePain(){
     for (let i = 0; i < goalArray.length; i++){
         let btn = goalArray[i].painBtn;
         btn.addEventListener("click", function(){
             document.querySelectorAll(".pain").forEach((item) =>{
-            item.classList.toggle("hide")
+            item.classList.toggle("hide");
+
+            document.querySelectorAll(".pain-btn").forEach((item) =>{
+            item.classList.toggle("crossed");
+            })
         });
+        //removes background color
         document.querySelectorAll(".card").forEach((item) =>{
             item.classList.remove("selected");
         })
@@ -110,6 +138,7 @@ function hidePain(){
 }
 hidePain();
 
+//function to toggle left vs right in goals
 function leftVsRight(){
     let num = 0;
 for (let i = 0; i < goalArray.length; i++){
@@ -122,6 +151,7 @@ for (let i = 0; i < goalArray.length; i++){
                 document.querySelectorAll(".side").forEach((item) => {
                     item.innerHTML = "right";
                 })
+                //removes background color
                 document.querySelectorAll(".card").forEach((item) =>{
                     item.classList.remove("selected");
                 })
@@ -151,3 +181,22 @@ leftVsRight();
 /* output */
 createHeader();
 
+
+const searchBar = document.querySelector("#search");
+
+searchBar.addEventListener("input", () => {
+    let value = searchBar.value.toLowerCase();
+    goalArray.forEach(function(item){
+    const visable = item.title.toLowerCase().includes(value);
+    if (value == "" || value == " "){
+        item.card.classList.remove("hide");
+    }
+    else if(!visable && value !=""){
+        item.card.classList.add("hide");
+    }
+    else if(visable && value !="")
+        item.card.classList.remove("hide");
+    })
+}   
+
+    )

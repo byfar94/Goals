@@ -16,7 +16,7 @@ let graspActivities = ["carrying a shopping bag", "opening a drawer", "holding a
 
 let digitExtensionActivities = ["sliding their hand into pockets"]
 
-let keyPinchActivities = ["using a key", "using a charging wire"];
+let keyPinchActivities = ["using a key", "using a zipper"];
 
 let twoPointPinchActivities = ["using a zipper", "grasping a coin"];
 
@@ -28,7 +28,15 @@ let wristActivities = ["writing", "typing"];
 
 let supProActivities = ["turning a door knob", "turning pages of a book"];
 
-let painActivities = ["upper body dressing"]
+let elbowFlexActivities = ["eating", "brushing their teeth"];
+
+let elbowExtActivities = ["reaching for items in cabinets"];
+
+let painActivities = ["upper body dressing"];
+
+let shFlexAbActivities = ["opening cabinets"];
+
+let shInExActivities = ["showering", "brushing hair"];
 
 //generate a random verbage from verb array 
 function randGen(array){
@@ -44,7 +52,7 @@ function createGoal(title, goal, category){
         category,
         card: createElement("div", "card"),
         headerContain: createElement("div", "header-contain"),
-        title: createElement("h2", "title", title),
+        titleHead: createElement("h2", "title", title),
         btnContain: createElement("div", "btn-contain"),
         lRBtn: createElement("button", "lr-button", "Left"),
         painBtn: createElement("button", "pain-btn", "Pain"),
@@ -94,7 +102,7 @@ console.log(d1Flex);
 let d1Ext = createGoal("D1 Extension", `Progress ROM of ${sideOut()} D1 **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
 add(d1Ext);
 
-let d1AdAb = createGoal("D1 Adduction/Abduction", `Progress ROM of ${sideOut()} D1 CMC **Adduction/Abduction** to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(thumbAbAdActivities)}`, "ROM");
+let d1AdAb = createGoal("D1 CMC Adduction/Abduction", `Progress ROM of ${sideOut()} D1 CMC **Adduction/Abduction** to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(thumbAbAdActivities)}`, "ROM");
 add(d1AdAb);
 
 let d2Flex = createGoal("D2 flexion", `Progress ROM of ${sideOut()} D2 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(tripodPinchActivities)}`, "ROM");
@@ -109,7 +117,7 @@ add(d4Flex);
 let d5Flex = createGoal("D5 flexion", `Progress ROM of ${sideOut()} D5 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
 add(d5Flex);
 
-let d2D5Ext = createGoal("D2,D3,D4,D5 Extension", `Progress ROM of ${sideOut()} **digit** **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(digitExtensionActivities)}`, "ROM");
+let d2D5Ext = createGoal("D2 - D5 Extension", `Progress ROM of ${sideOut()} **digit** **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(digitExtensionActivities)}`, "ROM");
 add(d2D5Ext);
 
 let DPC = createGoal("Distal Palmar Crease (DPC)", `Patient will decrease distance from ${sideOut()} **D"X"** to the DPC to **degrees** ${painOut()} to promote the use of a composite fist while ${randGen(graspActivities)}`, "ROM")
@@ -127,7 +135,18 @@ add(wristExtension);
 let supinationPronation = createGoal("Pronation / Supination", `Progress ROM of ${sideOut()} wrist **supination/Pronation** to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(supProActivities)}`, "ROM");
 add(supinationPronation);
 
+let elbowFlex = createGoal("Elbow Flexion", `Progress ROM of ${sideOut()} elbow flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(elbowFlexActivities)}`, "ROM" )
+add(elbowFlex);
 
+let elbowExt = createGoal("Elbow Extension", `Progress ROM of ${sideOut()} elbow Extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(elbowExtActivities)}`, "ROM" )
+add(elbowFlex);
+add(elbowExt);
+
+let shFlexAb = createGoal("Shoulder Flexion/Abduction", `Progress ROM of ${sideOut()} shoulder **flexion/Abduction** to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(shFlexAbActivities)}`, "ROM");
+add(shFlexAb);
+
+let shInEx = createGoal("Shoulder Internal/External Rotation", `Progress ROM of ${sideOut()} shoulder **internal/external** rotation to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(shInExActivities)}`, "ROM");
+add(shInEx);
 
 //Strength
 
@@ -140,8 +159,17 @@ add(latPinchStrength);
 let twoPointPinchStrength = createGoal("Two Point Pinch Strength", `Progress ${sideOut()} two point pinch strength to **lbs force** ${painOut()} ${randGen(verbArray)} ${randGen(twoPointPinchActivities)}`, "Strength");
 add(twoPointPinchStrength);
 
-let shArom = createGoal("Shoulder Flex/Ab AROM", `Patient will be able to perform AROM of the ${sideOut()} shoulder **flexion/Abduction** against gravity to **degrees** to assist the activity of opening cabinets.`, "Strength");
-add(shArom);
+let threePointPinchStrength = createGoal("Three Point Pinch Strength", `Progress ${sideOut()} two point pinch strength to **lbs force** ${painOut()} ${randGen(verbArray)} ${randGen(twoPointPinchActivities)}`, "Strength");
+add(threePointPinchStrength);
+
+let elbowFlexStr = createGoal("Elbow Flexion MMT", `Progress ${sideOut()} elbow flexors muscle strength to a grade of **0-5** ${painOut()} ${randGen(verbArray)} ${randGen(elbowFlexActivities)}`, "Strength");
+add(elbowFlexStr);
+
+let elbowExtStr = createGoal("Elbow Flexion MMT", `Progress ${sideOut()} elbow extensors muscle strength to a grade of **0-5** ${painOut()} ${randGen(verbArray)} ${randGen(elbowExtActivities)}`, "Strength");
+add(elbowExtStr);
+
+let shFlexAbStr = createGoal("Shoulder Flexion/Abduction MMT", `Progress ${sideOut()} shoulder **flexors/abductors** muscle strength to a grade of **0-5** ${painOut()} ${randGen(verbArray)} ${randGen(shFlexAbActivities)}`, "Strength");
+add(shFlexAbStr);
 
 
 //Pain
@@ -149,10 +177,19 @@ let GenPain = createGoal("Decrease Pain with Activity", `Decrease Pain to **x/10
 add(GenPain);
 
 //Scar
-let scarHealing = createGoal("Scar Healing General", " Improve scar healing to allow for better soft tissue extensibility", "Scar");
+let scarHealing = createGoal("Scar Healing General", "Improve scar healing to allow for better soft tissue extensibility", "Scar");
 add(scarHealing);
 
 //Edema
+let circumfernceEdemaPalm = createGoal("Edema: Circumfernce Hand", `Reduce edema of ${sideOut()} hand to **measurement** cm (circumferential measurment of palm)`, "Edema")
+add(circumfernceEdemaPalm);
+
+let circumfernceEdemaWrist = createGoal("Edema: Circumfernce Wrist", `Reduce edema of ${sideOut()} wrist to **measurement** cm (circumferential measurment of wrist)`, "Edema")
+add(circumfernceEdemaWrist);
+
+let figureEight = createGoal("Edema: Figure-of-Eight", `Reduce edema of ${sideOut()} hand to **measurement** cm figure-of-eight measurement `, "Edema");
+add(figureEight);
+
 
 
 //compliance
@@ -168,3 +205,6 @@ add(jtProtectionCompliance);
 let aromHepPrehab = createGoal("Pre-Hab: AROM HEP", "Compliance with AROM HEP program to prevent ROM loss/ contracture", "Prehab");
 add(aromHepPrehab);
 
+console.log(d1Flex.goal)
+console.log(d1Flex.goal.innerHTML)
+console.log(d1Flex.goal.innerHTML.includes("x/10 pain"));
