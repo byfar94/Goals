@@ -1,4 +1,3 @@
-import { create } from "lodash";
 
 //main array that holds object (Goals)
 export let goalArray = [];
@@ -63,7 +62,7 @@ function createGoal(title, goal, category){
 };
 
 function painOut(){
-    let painOut = createElement("span", "pain", "<span class=pain> with less than x/10 pain (VAS) </span>")
+    let painOut = createElement("span", "pain", "<span class=pain> with less than **x**/10 pain (VAS) </span>")
     return painOut.innerHTML;
 };
 
@@ -95,29 +94,29 @@ function add(name){
 
 //ROM
 
-let d1Flex = createGoal("D1 flexion", `Progress ROM of ${sideOut()} D1 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(tripodPinchActivities)}`, "ROM");
+let d1Flex = createGoal("D1 MCP/IP flexion", `Progress ROM of ${sideOut()} D1 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(tripodPinchActivities)}`, "ROM");
 add(d1Flex);
 console.log(d1Flex);
 
-let d1Ext = createGoal("D1 Extension", `Progress ROM of ${sideOut()} D1 **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
+let d1Ext = createGoal("D1 MCP/IP Extension", `Progress ROM of ${sideOut()} D1 **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(digitExtensionActivities)}`, "ROM");
 add(d1Ext);
 
 let d1AdAb = createGoal("D1 CMC Adduction/Abduction", `Progress ROM of ${sideOut()} D1 CMC **Adduction/Abduction** to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(thumbAbAdActivities)}`, "ROM");
 add(d1AdAb);
 
-let d2Flex = createGoal("D2 flexion", `Progress ROM of ${sideOut()} D2 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(tripodPinchActivities)}`, "ROM");
+let d2Flex = createGoal("D2 MCP/IP flexion", `Progress ROM of ${sideOut()} D2 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(tripodPinchActivities)}`, "ROM");
 add(d2Flex);
 
-let d3Flex = createGoal("D3 flexion", `Progress ROM of ${sideOut()} D3 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
+let d3Flex = createGoal("D3 MCP/IP flexion", `Progress ROM of ${sideOut()} D3 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
 add(d3Flex);
 
-let d4Flex = createGoal("D4 flexion", `Progress ROM of ${sideOut()} D4 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
+let d4Flex = createGoal("D4 MCP/IP flexion", `Progress ROM of ${sideOut()} D4 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
 add(d4Flex);
 
-let d5Flex = createGoal("D5 flexion", `Progress ROM of ${sideOut()} D5 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
+let d5Flex = createGoal("D5 MCP/IP flexion", `Progress ROM of ${sideOut()} D5 **joint** flexion to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(graspActivities)}`, "ROM");
 add(d5Flex);
 
-let d2D5Ext = createGoal("D2 - D5 Extension", `Progress ROM of ${sideOut()} **digit** **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(digitExtensionActivities)}`, "ROM");
+let d2D5Ext = createGoal("D2 - D5 MCP/IP Extension", `Progress ROM of ${sideOut()} **digit** **joint** extension to **degrees** ${painOut()} ${randGen(verbArray)} ${randGen(digitExtensionActivities)}`, "ROM");
 add(d2D5Ext);
 
 let DPC = createGoal("Distal Palmar Crease (DPC)", `Patient will decrease distance from ${sideOut()} **D"X"** to the DPC to **degrees** ${painOut()} to promote the use of a composite fist while ${randGen(graspActivities)}`, "ROM")
@@ -162,6 +161,12 @@ add(twoPointPinchStrength);
 let threePointPinchStrength = createGoal("Three Point Pinch Strength", `Progress ${sideOut()} two point pinch strength to **lbs force** ${painOut()} ${randGen(verbArray)} ${randGen(twoPointPinchActivities)}`, "Strength");
 add(threePointPinchStrength);
 
+let wristFlexStr = createGoal("Wrist Flexion MMT", `Progress ${sideOut()} wrist flexors muscle strength to a grade of **0-5** ${painOut()} ${randGen(verbArray)} ${randGen(wristActivities)}`, "Strength");
+add(wristFlexStr);
+
+let wristExtStr = createGoal("Wrist Extension MMT", `Progress ${sideOut()} wrist extension muscle strength to a grade of **0-5** ${painOut()} ${randGen(verbArray)} ${randGen(wristActivities)}`, "Strength");
+add(wristExtStr);
+
 let elbowFlexStr = createGoal("Elbow Flexion MMT", `Progress ${sideOut()} elbow flexors muscle strength to a grade of **0-5** ${painOut()} ${randGen(verbArray)} ${randGen(elbowFlexActivities)}`, "Strength");
 add(elbowFlexStr);
 
@@ -205,6 +210,7 @@ add(jtProtectionCompliance);
 let aromHepPrehab = createGoal("Pre-Hab: AROM HEP", "Compliance with AROM HEP program to prevent ROM loss/ contracture", "Prehab");
 add(aromHepPrehab);
 
+/*
 console.log(d1Flex.goal)
 console.log(d1Flex.goal.innerHTML)
-console.log(d1Flex.goal.innerHTML.includes("x/10 pain"));
+console.log(d1Flex.goal.innerHTML.includes("x/10 pain"));*/

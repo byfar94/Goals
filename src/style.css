@@ -1,4 +1,14 @@
-/* <-----------reset----------------> */
+/* 
+<----------- Index ----------------> 
+
+<-----------[1]reset----------------> 
+<---------------[2]components ------------->
+<---------------[3]header------------------>
+<---------------[4]Goal Content------------------>
+<---------------Toggle Classes------------------>
+*/
+
+/* <-----------[1]reset----------------> */
 /* Box sizing rules */
 *,
 *::before,
@@ -74,21 +84,7 @@ select {
   }
 }
 
-/* <--------------- Toggle Classes -------------> */
-
-.hide{
-  display: none;
-}
-
-.selected{
-  background-color: lightgreen;
-}
-
-.crossed{
-  text-decoration: line-through;
-}
-
-/* <--------------- components -------------> */
+/* <---------------[2]components -------------> */
 
 h1{
   font-size: 1.5rem;
@@ -111,14 +107,20 @@ button{
   width: 3.5rem;
 }
 
-/* <---------------header------------------>*/
+/* <---------------[3]header------------------>*/
 
 header{
   box-shadow: 2px 2px 10px darkgray;
   border-radius: 0 0 1rem 1rem;
   display: flex;
   justify-content: space-between;
+}
 
+.icon-contain{
+  display: flex;
+  padding: 0.25rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav{
@@ -161,17 +163,11 @@ header{
   outline: none;
   border-radius: 0.25rem;
   background-color: rgb(230, 230, 230);
-}
-
-.search:hover{
   border: 1px lightsteelblue solid;
 }
 
-.search:active{
-  border: 1px lightsteelblue solid;
-}
 
-/* <---------------Goal Content------------------>*/
+/* <---------------[4]Goal Content------------------>*/
 
 /* cards*/
 
@@ -190,6 +186,10 @@ header{
     box-shadow: 2px 2px 10px darkgray;
 }
 
+.card:hover{
+  background-color: lightsteelblue;
+}
+
 .selected{
   background-color: lightgreen;
 }
@@ -197,4 +197,19 @@ header{
 .header-contain{
     display: flex;
     justify-content: space-between;
+}
+
+
+/* <--------------- Toggle Classes -------------> */
+
+.hide{
+  display: none;
+}
+
+.selected{
+  background-color: lightgreen;
+}
+
+.crossed{
+  text-decoration: line-through;
 }

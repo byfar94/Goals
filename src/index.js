@@ -1,10 +1,20 @@
 import _ from 'lodash';
 import './style.css';
+import flagIcon from './Images/flag.svg';
 import { createElement, goalArray } from './app';
 
 //function to create header
 function createHeader(){
     const header = createElement("header");
+
+    //icon
+    const logo = new Image();
+    logo.src = flagIcon;
+    const iconContain = createElement("div", "icon-contain");
+    header.appendChild(iconContain);
+    iconContain.appendChild(logo);
+    const h1Logo = createElement("h1", "logo-h1", "HTG");
+    iconContain.appendChild(h1Logo);
 
     //nav
     document.body.appendChild(header);
@@ -20,18 +30,38 @@ function createHeader(){
 
         tab.addEventListener("click", function(){
             if(tab.innerText == "ROM") {
+                //removes background color
+                document.querySelectorAll(".copy-btn").forEach((item) =>{
+                item.classList.remove("selected");
+                    })
+                //displays goals with catagory of "ROM"
                 displayGoalCards(goalArray, "ROM"); 
             }
             else if(tab.innerText == "Strength") {
+                //removes background color
+                document.querySelectorAll(".copy-btn").forEach((item) =>{
+                item.classList.remove("selected");
+                    })
+                //displays goals with catagory of "Strength"
                 displayGoalCards(goalArray, "Strength");
             }
             else if(tab.innerText == "Scar/Edema/Pain"){
+                //removes background color
+                document.querySelectorAll(".copy-btn").forEach((item) =>{
+                item.classList.remove("selected");
+                    })
+                //displays goals with catagory of "Scar", "Edema", or "Pain"
                 displayGoalCards(goalArray, "Scar")
                 displayGoalCardsNoClear(goalArray, "Edema")
                 displayGoalCardsNoClear(goalArray, "Pain");
 
             }
             else if(tab.innerText == "Pre-Hab/Compliance"){
+                //removes background color
+                document.querySelectorAll(".copy-btn").forEach((item) =>{
+                item.classList.remove("selected");
+                    })
+                //displays goals with catagory of "Prehab" or "Compliance"
                 displayGoalCards(goalArray, "Prehab");
                 displayGoalCardsNoClear(goalArray, "Compliance");
             }
@@ -67,7 +97,7 @@ function displayGoalCards(array, cat){
             if (item.goal.innerHTML.includes("left" || "right")){
                 item.btnContain.appendChild(item.lRBtn);
                 }
-            if (item.goal.innerHTML.includes("x/10 pain")){
+            if (item.goal.innerHTML.includes("**x**/10 pain")){
                 item.btnContain.appendChild(item.painBtn);
                 }
             item.btnContain.appendChild(item.copyBtn);
@@ -89,7 +119,7 @@ function displayGoalCardsNoClear(array, cat){
             if (item.goal.innerHTML.includes("left" || "right")){
                 item.btnContain.appendChild(item.lRBtn);
                 }
-            if (item.goal.innerHTML.includes("x/10 pain")){
+            if (item.goal.innerHTML.includes("**x**/10 pain")){
                 item.btnContain.appendChild(item.painBtn);
                 }
             item.btnContain.appendChild(item.copyBtn);
@@ -105,10 +135,11 @@ function copy (){
         btn.addEventListener("click", function(){
             let input = goalArray[i].goal.innerText;
             navigator.clipboard.writeText(input);
-            document.querySelectorAll(".card").forEach((item) =>{
+            document.querySelectorAll(".copy-btn").forEach((item) =>{
                 item.classList.remove("selected");
             })
-            goalArray[i].card.classList.add("selected");
+            
+            goalArray[i].copyBtn.classList.add("selected");
         })
     }
     }
@@ -129,7 +160,7 @@ function hidePain(){
             })
         });
         //removes background color
-        document.querySelectorAll(".card").forEach((item) =>{
+        document.querySelectorAll(".copy-btn").forEach((item) =>{
             item.classList.remove("selected");
         })
 
@@ -152,8 +183,8 @@ for (let i = 0; i < goalArray.length; i++){
                     item.innerHTML = "right";
                 })
                 //removes background color
-                document.querySelectorAll(".card").forEach((item) =>{
-                    item.classList.remove("selected");
+                document.querySelectorAll(".copy-btn").forEach((item) =>{
+                item.classList.remove("selected");
                 })
         })
         }
@@ -175,15 +206,13 @@ for (let i = 0; i < goalArray.length; i++){
     }
 
 }
-
 leftVsRight();
 
 /* output */
 createHeader();
 
-
+//search functionality
 const searchBar = document.querySelector("#search");
-
 searchBar.addEventListener("input", () => {
     let value = searchBar.value.toLowerCase();
     goalArray.forEach(function(item){
